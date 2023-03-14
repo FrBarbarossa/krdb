@@ -4,5 +4,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   root "mainpage#index"
-  get "/products", to: 'mainpage#prodview'
+  get "/products", to: 'product#prodview'
+  get '/category', to: 'product#catview'
+  post '/addcat', to: "product#addcat"
+  post "/delcat/:id", to: "product#delcat"
+
 end

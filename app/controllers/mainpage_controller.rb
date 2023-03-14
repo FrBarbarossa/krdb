@@ -5,8 +5,4 @@ class MainpageController < ApplicationController
     # @category.save
   end
 
-  def prodview
-    
-  end
-
 end

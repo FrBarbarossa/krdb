@@ -1,0 +1,47 @@
+<div class="row p-2">
+    <div class="col-auto">
+        <%= form_with class: "d-flex", url: "/addcat", method: :post do |form| %>
+            <%= form.text_area :message, size: "15x1" %>
+            <%= submit_tag("Добавить категорию", class: "btn btn-primary", id: 'btn') %>
+          <% end %> 
+    </div>
+    </div>
+</div>
+
+<div class="row">
+    <table class="table table-warning table-striped">
+    <thead>
+        <tr>
+        <th scope="col">id</th>
+        <th scope="col">Название категории</th>
+        <th scope="col">Действие</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <% for category in @categories %>
+            <tr>
+                <th scope="row"><%= category.id %></th>
+                <td><%= category.name %></td>
+                <td>
+                    <div class="container">
+                        <div class="row">
+                            <div class='col-auto'>
+                                <%= form_with url: "#" do |form| %>
+                                    <%= form.submit(type: :image, src: asset_path('edit.png'), height: "20", id: 'btn') %>
+                                <% end %> 
+                            </div>
+                            <div class='col-auto'>
+                                <%= form_with url: "/delcat/#{category.id}" do |form| %>
+                                    <button type="submit" class="btn-close" aria-label="Закрыть"></button>
+                                <% end %>   
+                            </div>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+        <% end %>
+    </tbody>
+    </table>
+</div>

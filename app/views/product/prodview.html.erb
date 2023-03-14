@@ -1,0 +1,59 @@
+<div class="row p-2">
+    <div class="col-auto">
+        <%= form_with class: "d-flex", url: "/category", method: :get do |form| %>
+            <%= submit_tag("Редактировать категории", class: "btn btn-primary", id: 'btn') %>
+          <% end %> 
+    </div>
+    <div class="col-auto">
+        <%= form_with class: "d-flex", url: "/", method: :get do |form| %>
+            <%= submit_tag("Редактировать типы", class: "btn btn-warning", id: 'btn') %>
+          <% end %>     </div>
+    <div class="col-auto">
+        <%= form_with class: "d-flex", url: "/", method: :get do |form| %>
+            <%= submit_tag("Редактировать серии", class: "btn btn-info", id: 'btn') %>
+          <% end %>
+    </div>
+</div>
+
+
+<div class="row">
+    <table class="table table-warning table-striped">
+    <thead>
+        <tr>
+        <th scope="col">id</th>
+        <th scope="col">Название продукта</th>
+        <th scope="col">Цена, руб</th>
+        <th scope="col">Скидна, %</th>
+        <th scope="col">Кол-во на складе</th>
+        <th scope="col">Ктегория</th>
+        <th scope="col">Тип</th>
+        <th scope="col">Серия</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for category in @products %>
+            <tr>
+                <th scope="row"><%= category.id %></th>
+                <td><%= category.name %></td>
+                <td>
+                    <div class="container">
+                        <div class="row">
+                            <div class='col-auto'>
+                                <%= form_with url: '#' do |form| %>
+                                    <%= form.submit(type: :image, src: asset_path('edit.png'), height: "20", id: 'btn') %>
+                                <% end %> 
+                            </div>
+                            <div class='col-auto'>
+                                <%= form_with url: '#' do |form| %>
+                                    <button type="submit" class="btn-close" aria-label="Закрыть"></button>
+                                <% end %>   
+                            </div>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+        <% end %>
+    </tbody>
+    </table>
+</div>

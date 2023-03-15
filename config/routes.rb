@@ -28,4 +28,10 @@ Rails.application.routes.draw do
   post "/edser/:id", to: "product#edser"
   post "/cancelser/:id", to: "product#cancelser"
   post "/confirmser/:id", to: "product#confirmser"
+
+  post "/prodcreate", to: "product#prodcreate"
+  post "/addprod", to: "product#addprod"
+  post "/edprod/:id", to: "product#edprod"
+  post '/confirmprod/:id', to: "product#confirmprod"
+  post "/delprod/:id", to: "product#delprod"
 end

@@ -96,9 +96,40 @@ class ProductController < ApplicationController
 
   end
 
-  def confirmtype
-    @type = Type.find_by(id: params[:id])
+  def confirmser
+    @type = Series.find_by(id: params[:id])
     @type.update(name: params[:name])
-    redirect_to '/type'
+    redirect_to '/series'
+  end
+
+  def prodcreate
+    @category = Category.all.reorder('id ASC')
+    @type = Type.all.reorder('id ASC')
+    @series = Series.all.reorder('id ASC')
+  end
+
+  def addprod
+    @prod = Product.new({ name: params[:name], price: params[:price], category_id: params[:category], type_id: params[:type], series_id: params[:series], discount_percent: params[:sale]})
+    return unless @prod.valid?
+    @prod.save
+    redirect_to '/products'
+  end
+
+  def edprod
+    @product = Product.find_by(id: params[:id])
+    @category = Category.all.reorder('id ASC')
+    @type = Type.all.reorder('id ASC')
+    @series = Series.all.reorder('id ASC')
+  end
+
+  def confirmprod
+    @product = Product.find_by(id: params[:id])
+    @product.update({ name: params[:name], price: params[:price], category_id: params[:category], type_id: params[:type], series_id: params[:series], discount_percent: params[:sale]})
+    redirect_to '/product'
+  end
+
+  def delprod
+    Product.find_by(id: params[:id]).destroy
+    redirect_to '/product'
   end
 end

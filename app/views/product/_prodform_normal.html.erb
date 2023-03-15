@@ -1,0 +1,124 @@
+<% if product.nil? %>
+    <div class='container'>
+        <%= form_with url: "/addprod", method: :post do |form| %>
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :name_prod, "Введите название продукта:" %></p>
+            </div>
+            <div class='col-auto'>
+                <p><%= form.text_field :name %></p>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :price_prod, "Введите цену продукта:" %></p>
+            </div>
+            <div class='col-auto'>
+                <%= form.number_field :price, in: 1.0..100000.0, step: 0.01 %>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :sale_prod, "Введите скидку на продукт в %:" %></p>
+            </div>
+            <div class='col-auto'>
+                <%= form.number_field :sale, in: 0.0..100.0, step: 1 %>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :sale_prod, "Выберите категорию:" %></p>
+            </div>
+            <div class='col-auto'>
+                <p><%= select_tag "category", options_from_collection_for_select(@category, "id", "name", '1') %></p>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :sale_prod, "Выберите Тип:" %></p>
+            </div>
+            <div class='col-auto'>
+                <p><%= select_tag "type", options_from_collection_for_select(@type, "id", "name", '1') %></p>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :sale_prod, "Выберите Серию:" %></p>
+            </div>
+            <div class='col-auto'>
+                <p><%= select_tag "series", options_from_collection_for_select(@series, "id", "name", '1') %></p>
+            </div>
+        </div>
+
+            <p><%= submit_tag("Добавить продукт", class: "btn btn-info", id: 'btn') %></p>
+        <% end %>
+    </div>
+<% else %>
+    <div class='container'>
+        <%= form_with url: "/confirmprod/#{product.id}", method: :post do |form| %>
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :name_prod, "Введите название продукта:" %></p>
+            </div>
+            <div class='col-auto'>
+                <p><%= form.text_field :name, value: product.name %></p>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :price_prod, "Введите цену продукта:" %></p>
+            </div>
+            <div class='col-auto'>
+                <%= form.number_field :price, in: 1.0..100000.0, step: 0.01, value: product.price %>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :sale_prod, "Введите скидку на продукт в %:" %></p>
+            </div>
+            <div class='col-auto'>
+                <%= form.number_field :sale, in: 0.0..100.0, step: 1, value: product.discount_percent %>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :sale_prod, "Выберите категорию:" %></p>
+            </div>
+            <div class='col-auto'>
+                <p><%= select_tag "category", options_from_collection_for_select(@category, "id", "name", product.category_id) %></p>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :sale_prod, "Выберите Тип:" %></p>
+            </div>
+            <div class='col-auto'>
+                <p><%= select_tag "type", options_from_collection_for_select(@type, "id", "name", product.type_id) %></p>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :sale_prod, "Выберите Серию:" %></p>
+            </div>
+            <div class='col-auto'>
+                <p><%= select_tag "series", options_from_collection_for_select(@series, "id", "name", product.series_id) %></p>
+            </div>
+        </div>
+
+            <p><%= submit_tag("Сохранить изменения", class: "btn btn-info", id: 'btn') %></p>
+        <% end %>
+    </div>
+<% end %>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+</div>

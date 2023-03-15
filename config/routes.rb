@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/category', to: 'product#catview'
   get "/type", to: 'product#typeview'
   get "/series", to: 'product#serview'
+  get "/client", to: "client#clientview"
 
 
   post '/addcat', to: "product#addcat"
@@ -34,4 +35,10 @@ Rails.application.routes.draw do
   post "/edprod/:id", to: "product#edprod"
   post '/confirmprod/:id', to: "product#confirmprod"
   post "/delprod/:id", to: "product#delprod"
-end
+  
+  post "/clientcreate", to: "client#clientcreate"
+  post "/addclient", to: "client#addclient"
+  post "/edclient/:id", to: "client#edclient"
+  post "/confirmclient/:id", to: "client#confirmclient"
+  post "/delclient/:id", to: "client#delclient"
+end 

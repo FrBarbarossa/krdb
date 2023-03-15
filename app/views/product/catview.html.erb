@@ -8,40 +8,18 @@
     </div>
 </div>
 
-<div class="row">
-    <table class="table table-warning table-striped">
-    <thead>
-        <tr>
-        <th scope="col">id</th>
-        <th scope="col">Название категории</th>
-        <th scope="col">Действие</th>
-
-        </tr>
-    </thead>
-    <tbody>
+<div class="row justify-content-md-center">
+    <div class='col'>
+        <div class='row justify-content-md-center'>
+            <div class="col-1">id</div>
+            <div class="col-3">Название категории</div>
+            <div class='col-3'>Действие</div>
+        </div>
         <% for category in @categories %>
-            <tr>
-                <th scope="row"><%= category.id %></th>
-                <td><%= category.name %></td>
-                <td>
-                    <div class="container">
-                        <div class="row">
-                            <div class='col-auto'>
-                                <%= form_with url: "#" do |form| %>
-                                    <%= form.submit(type: :image, src: asset_path('edit.png'), height: "20", id: 'btn') %>
-                                <% end %> 
-                            </div>
-                            <div class='col-auto'>
-                                <%= form_with url: "/delcat/#{category.id}" do |form| %>
-                                    <button type="submit" class="btn-close" aria-label="Закрыть"></button>
-                                <% end %>   
-                            </div>
-                        </div>
-                    </div>
-                </td>
-
-            </tr>
+            <div class='row justify-content-md-center' id=<%="cat-#{category.id}"%>>
+                <%= render 'normal_cat', category: category%>
+            </div>
         <% end %>
-    </tbody>
-    </table>
+
+    </div>
 </div>

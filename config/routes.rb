@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   root "mainpage#index"
   get "/products", to: 'product#prodview'
   get '/category', to: 'product#catview'
+
   post '/addcat', to: "product#addcat"
   post "/delcat/:id", to: "product#delcat"
-
+  post "/edcat/:id", to: "product#edcat"
+  post "/cancelcat/:id", to: "product#cancelcat"
+  post "/confirmcat/:id", to: "product#confirmcat"
 end

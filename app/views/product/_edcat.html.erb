@@ -1,0 +1,28 @@
+<%= form_with class: "d-flex justify-content-md-center", url: "/confirmcat/#{category.id}", method: :post do |form| %>
+    <div class='col-1'><%= category.id %></div>
+    <div class='col-3'>
+            <div class="container m-0">
+                <div class="row">
+                    <div class='col-auto'>
+                        <%= form.text_field :name, value: category.name, class: 'form-control', id: 'name' %>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div class='col-3'>
+        <div class="container">
+            <div class="row">
+                <div class='col-auto'>
+                    <%= submit_tag("Сохранить", class: "btn btn-info", id: 'btn') %>
+                </div>
+                <div class='col-auto'>
+                    <%= form_with url: "/cancelcat/#{category.id}" do |form| %>
+                        <%= submit_tag("Отменить", class: "btn btn-danger", id: 'btn') %>
+                    <% end %>   
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %> 
+
+                

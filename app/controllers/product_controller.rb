@@ -37,4 +37,36 @@ class ProductController < ApplicationController
     @category.update(name: params[:name])
     redirect_to '/category'
   end
+
+  def typeview
+    @type = Type.all.reorder('id ASC')
+  end
+
+  def addtype
+    @type = Type.new({ name: params[:message] })
+    return unless @type.valid?
+    @type.save
+    redirect_to '/type'
+  end
+
+  def deltype
+    Type.find_by(id: params[:id]).destroy
+    redirect_to '/type'
+  end
+
+  def edtype
+    @type = Type.find_by(id: params[:id])
+  end
+
+  def canceltype
+    # @category = Category.find_by(id: params[:id])
+    redirect_to '/type'
+
+  end
+
+  def confirmtype
+    @type = Type.find_by(id: params[:id])
+    @type.update(name: params[:name])
+    redirect_to '/type'
+  end
 end

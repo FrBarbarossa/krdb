@@ -69,4 +69,36 @@ class ProductController < ApplicationController
     @type.update(name: params[:name])
     redirect_to '/type'
   end
+
+  def serview
+    @series = Series.all.reorder('id ASC')
+  end
+
+  def addser
+    @series = Series.new({ name: params[:message] })
+    return unless @series.valid?
+    @series.save
+    redirect_to '/series'
+  end
+
+  def delser
+    Series.find_by(id: params[:id]).destroy
+    redirect_to '/series'
+  end
+
+  def edser
+    @series = Series.find_by(id: params[:id])
+  end
+
+  def cancelser
+    # @category = Category.find_by(id: params[:id])
+    redirect_to '/series'
+
+  end
+
+  def confirmtype
+    @type = Type.find_by(id: params[:id])
+    @type.update(name: params[:name])
+    redirect_to '/type'
+  end
 end

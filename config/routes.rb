@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get "/products", to: 'product#prodview'
   get '/category', to: 'product#catview'
   get "/type", to: 'product#typeview'
+  get "/series", to: 'product#serview'
+
 
   post '/addcat', to: "product#addcat"
   post "/delcat/:id", to: "product#delcat"
@@ -19,4 +21,11 @@ Rails.application.routes.draw do
   post "/edtype/:id", to: "product#edtype"
   post "/canceltype/:id", to: "product#canceltype"
   post "/confirmtype/:id", to: "product#confirmtype"
+
+
+  post '/addser', to: "product#addser"
+  post "/delser/:id", to: "product#delser"
+  post "/edser/:id", to: "product#edser"
+  post "/cancelser/:id", to: "product#cancelser"
+  post "/confirmser/:id", to: "product#confirmser"
 end

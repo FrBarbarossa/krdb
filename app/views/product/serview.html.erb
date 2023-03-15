@@ -1,0 +1,25 @@
+<div class="row p-2">
+    <div class="col-auto">
+        <%= form_with class: "d-flex", url: "/addser", method: :post do |form| %>
+            <%= form.text_area :message, size: "15x1" %>
+            <%= submit_tag("Добавить серию", class: "btn btn-primary", id: 'btn') %>
+          <% end %> 
+    </div>
+    </div>
+</div>
+
+<div class="row justify-content-md-center">
+    <div class='col'>
+        <div class='row justify-content-md-center'>
+            <div class="col-1">id</div>
+            <div class="col-3">Название типа</div>
+            <div class='col-3'>Действие</div>
+        </div>
+        <% for series in @series %>
+            <div class='row justify-content-md-center' id=<%="ser-#{series.id}"%>>
+                <%= render 'normal_ser', series: series %>
+            </div>
+        <% end %>
+
+    </div>
+</div>

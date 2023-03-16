@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get "/series", to: 'product#serview'
   get "/client", to: "client#clientview"
   get "/card", to: "bonus#cardview"
+  get '/bonuslog', to: "bonus#bonuslogview"
+  get "/whlog", to: "warehouse#whlogview" 
 
 
   post '/addcat', to: "product#addcat"
@@ -45,4 +47,6 @@ Rails.application.routes.draw do
 
   post "/linkcard/:id", to: "bonus#linkcard"
 
+  post "/whlogcreate", to: "warehouse#whlogcreate"
+  post "/addwhlog", to: "warehouse#addwhlog"
 end 

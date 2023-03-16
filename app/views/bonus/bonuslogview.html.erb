@@ -1,0 +1,39 @@
+<div class="row p-2">
+    <div class='col-auto'>
+    </div>
+
+</div>
+
+
+<div class="row">
+    <table class="table table-warning table-striped">
+    <thead>
+        <tr>
+        <th scope="col">id</th>
+        <th scope="col">id покупки</th>
+        <th scope="col">id бонусной карты</th>
+        <th scope="col">Изменение баланса</th>
+        <th scope="col">Дата операции</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for blog in @blog%>
+            <tr>
+                <th scope="row"><%= blog.id %></th>
+                <td><%= blog.purchase_id %></td>
+                <td><%= blog.bonus_card_id %></td>
+                <td><%= blog.balance_change %></td>
+                <td><%= blog.date %></td>
+            </tr>
+        <% end %>
+    </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content" id="m-body">
+
+      </div>
+  </div>
+</div>

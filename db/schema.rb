@@ -105,5 +105,5 @@ ActiveRecord::Schema[7.0].define(version: 0) do
   add_foreign_key "product", "type", name: "product_type_id_fkey", on_update: :cascade
   add_foreign_key "purchase", "client", name: "purchase_client_id_fkey", on_update: :cascade
   add_foreign_key "purchase", "seller", name: "purchase_seller_id_fkey", on_update: :cascade
-  add_foreign_key "warehouselog", "purchase", name: "warehouselog_purchase_id_fkey"
+  # add_foreign_key "warehouselog", "purchase", name: "warehouselog_purchase_id_fkey"
 end

@@ -9,4 +9,8 @@ class BonusController < ApplicationController
         @card.save
         redirect_to '/client'
     end
+
+    def bonuslogview
+        @blog = Bonuslog.all().reorder("id ASC")
+    end
 end

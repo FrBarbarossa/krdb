@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "/type", to: 'product#typeview'
   get "/series", to: 'product#serview'
   get "/client", to: "client#clientview"
+  get "/card", to: "bonus#cardview"
 
 
   post '/addcat', to: "product#addcat"
@@ -41,4 +42,7 @@ Rails.application.routes.draw do
   post "/edclient/:id", to: "client#edclient"
   post "/confirmclient/:id", to: "client#confirmclient"
   post "/delclient/:id", to: "client#delclient"
+
+  post "/linkcard/:id", to: "bonus#linkcard"
+
 end 

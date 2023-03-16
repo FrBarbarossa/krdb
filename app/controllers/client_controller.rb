@@ -1,6 +1,8 @@
 class ClientController < ApplicationController
     def clientview
         @client = Client.all.reorder('id ASC')
+        p "!!!!!!!!"
+        p Time.now.strftime("%m/%d/%Y")
       end
     
     def clientcreate

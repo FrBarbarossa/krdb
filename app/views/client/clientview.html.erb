@@ -53,7 +53,17 @@
                             <div class='col-auto'>
                                 <%= form_with url: "/delclient/#{client.id}" do |form| %>
                                     <button type="submit" class="btn-close" aria-label="Закрыть"></button>
-                                <% end %>   
+                                <% end %>  
+                            </div>
+                            <div class='col-auto'>
+                                   <% @card = Bonuscard.find_by(client_id: client.id) %>
+                                   <% if @card.nil? %>
+                                        <%= form_with url: "/linkcard/#{client.id}" do |form| %>
+                                            <button type="submit" class="btn btn-success">
+                                            Привязать бонусную карту
+                                            </button>
+                                        <% end %>  
+                                   <% end %>
                             </div>
                         </div>
                     </div>

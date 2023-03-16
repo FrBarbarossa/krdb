@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get "/card", to: "bonus#cardview"
   get '/bonuslog', to: "bonus#bonuslogview"
   get "/whlog", to: "warehouse#whlogview" 
+  get "/seller", to: "seller#sellerview"
 
 
   post '/addcat', to: "product#addcat"
@@ -49,4 +50,10 @@ Rails.application.routes.draw do
 
   post "/whlogcreate", to: "warehouse#whlogcreate"
   post "/addwhlog", to: "warehouse#addwhlog"
+
+  post "/sellercreate", to: "seller#sellercreate"
+  post "/addseller", to: "seller#addseller"
+  post "/edseller/:id", to: "seller#edseller"
+  post "/confirmseller/:id", to: "seller#confirmseller"
+  post "/delseller/:id", to: "seller#delseller"
 end 

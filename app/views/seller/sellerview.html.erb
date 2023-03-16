@@ -1,0 +1,79 @@
+<div class="row p-2">
+    <div class='col-auto'>
+        <%= form_with class: "d-flex", url: "/sellercreate", method: :post do |form| %>
+            <button type="submit" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Добавить сотрудника
+            </button>
+          <% end %>
+    </div>
+
+</div>
+
+
+<div class="row">
+    <table class="table table-warning table-striped">
+    <thead>
+        <tr>
+        <th scope="col">id</th>
+        <th scope="col">Имя</th>
+        <th scope="col">Фамилия</th>
+        <th scope="col">Отчество</th>
+        <th scope="col">Дата рождения</th>
+        <th scope="col">Номер телефона</th>
+        <th scope="col">Серия паспорта</th>
+        <th scope="col">Номер паспорта</th>
+        <th scope="col">Зарплата</th>
+        <th scope="col">Дата найма</th>
+        <th scope="col">Дата увольнения</th>
+
+        <th scope="col">Действие</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <% for seller in @seller %>
+            <tr>
+                <th scope="row"><%= seller.id %></th>
+                <td><%= seller.first_name %></td>
+                <td><%= seller.surname %></td>
+                <td><%= seller.patronymic %></td>
+                <td><%= seller.birth_date %></td>
+                <td><%= seller.phone_number %></td>
+                <td><%= seller.passport_series %></td>
+                <td><%= seller.passport_number %></td>
+                <td><%= seller.salary %></td>
+                <td><%= seller.hiring_date %></td>
+                <td><%= seller.disimiss_date %></td>
+
+                <td>
+                    <div class="container">
+                        <div class="row">
+                            <div class='col-auto p-0 m-0'>
+                                <%= form_with url: "/edseller/#{seller.id}", method: :post do |form| %>
+                                <button type="submit" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                Ред.
+                                </button>
+                                <% end %> 
+                            </div>
+                            <div class='col-auto p-0 m-0'>
+                                <%= form_with url: "/delseller/#{seller.id}" do |form| %>
+                                    <button type="submit" class="btn-close" aria-label="Закрыть"></button>
+                                <% end %>  
+                            </div>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+        <% end %>
+    </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content" id="m-body">
+
+      </div>
+  </div>
+</div>

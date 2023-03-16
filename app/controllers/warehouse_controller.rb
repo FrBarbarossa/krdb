@@ -1,6 +1,6 @@
 class WarehouseController < ApplicationController
     def whlogview
-        @whlog = Warehouselog.all().reorder("id ASC")
+        @whlog = Warehouselog.limit(500).reorder("id ASC")
     end
 
     def whlogcreate

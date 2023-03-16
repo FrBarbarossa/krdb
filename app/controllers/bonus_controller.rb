@@ -11,6 +11,6 @@ class BonusController < ApplicationController
     end
 
     def bonuslogview
-        @blog = Bonuslog.all().reorder("id ASC")
+        @blog = Bonuslog.limit(500).reorder("id ASC")
     end
 end

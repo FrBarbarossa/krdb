@@ -1,0 +1,56 @@
+<% if purchase.nil? %>
+    <div class='container'>
+        <%= form_with url: "/addpurchase", method: :post do |form| %>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :sale_prod, "Выберите id продавца:" %></p>
+            </div>
+            <div class='col-auto'>
+                <p><%= select_tag "seller_id", options_from_collection_for_select(@seller, "id","id", '1') %></p>
+            </div>
+        </div>        
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :sale_prod, "Выберите id покупателя:" %></p>
+            </div>
+            <div class='col-auto'>
+                <p><%= select_tag "client_id", options_from_collection_for_select(@client, "id","id", '1') %></p>
+            </div>
+        </div>     
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :sale_prod, "Выберите продукты:" %></p>
+            </div>
+            <div class='col-auto'>
+                <p><%= select_tag "product_id", options_from_collection_for_select(@product, "id", "name", '1'), multiple: true %></p>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :price_prod, "Сумма деньгами:" %></p>
+            </div>
+            <div class='col-auto'>
+                <%= form.number_field :cash_amount, in: 1.0..1000000000.0, step: 0.01 %>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :price_prod, "Сумма баллами:" %></p>
+            </div>
+            <div class='col-auto'>
+                <%= form.number_field :bonus_amount, in: 1.0..1000000000.0, step: 1 %>
+            </div>
+        </div>
+
+            <p><%= submit_tag("Создать запись о покупке", class: "btn btn-info", id: 'btn') %></p>
+        <% end %>
+    </div>
+<% end %>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+</div>

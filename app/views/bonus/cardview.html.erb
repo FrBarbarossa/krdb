@@ -1,0 +1,42 @@
+<div class="row p-2">
+    <div class='col-auto'>
+        <%= form_with class: "d-flex", url: "/clientcreate", method: :post do |form| %>
+            <button type="submit" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Добавить клиента
+            </button>
+          <% end %>
+    </div>
+
+</div>
+
+
+<div class="row">
+    <table class="table table-warning table-striped">
+    <thead>
+        <tr>
+        <th scope="col">id</th>
+        <th scope="col">id клиента</th>
+        <th scope="col">Баланс</th>
+        <th scope="col">Дата создания</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for card in @card%>
+            <tr>
+                <th scope="row"><%= card.id %></th>
+                <td><%= card.client_id %></td>
+                <td><%= card.balance %></td>
+                <td><%= card.creation_date %></td>
+            </tr>
+        <% end %>
+    </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content" id="m-body">
+
+      </div>
+  </div>
+</div>

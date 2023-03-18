@@ -1,0 +1,37 @@
+<% if whlog.nil? %>
+    <div class='container'>
+        <%= form_with url: "/addwhlog", method: :post do |form| %>
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :sale_prod, "Выберите продукт:" %></p>
+            </div>
+            <div class='col-auto'>
+                <p><%= select_tag "product_id", options_from_collection_for_select(@product, "id", "name", '1') %></p>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :amout, "Введите размер поставки:" %></p>
+            </div>
+            <div class='col-auto'>
+                <%= form.number_field :quantity_change, in: 1.0..100000.0, step: 1 %>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :price_prod, "Введите стоимость поставки:" %></p>
+            </div>
+            <div class='col-auto'>
+                <%= form.number_field :amount, in: 1.0..1000000000.0, step: 0.01 %>
+            </div>
+        </div>
+
+            <p><%= submit_tag("Создать запись о поставке", class: "btn btn-info", id: 'btn') %></p>
+        <% end %>
+    </div>
+<% end %>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+</div>

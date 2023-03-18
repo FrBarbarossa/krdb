@@ -1,0 +1,90 @@
+<div class="row p-2">
+    <div class="col-auto">
+        <%= form_with class: "d-flex", url: "/category", method: :get do |form| %>
+            <%= submit_tag("Редактировать категории", class: "btn btn-primary", id: 'btn') %>
+          <% end %> 
+    </div>
+    <div class="col-auto">
+        <%= form_with class: "d-flex", url: "/type", method: :get do |form| %>
+            <%= submit_tag("Редактировать типы", class: "btn btn-warning", id: 'btn') %>
+          <% end %>     
+    </div>
+    <div class="col-auto">
+        <%= form_with class: "d-flex", url: "/series", method: :get do |form| %>
+            <%= submit_tag("Редактировать серии", class: "btn btn-info", id: 'btn') %>
+          <% end %>
+    </div>
+
+    <div class='col-auto'>
+        <%= form_with class: "d-flex", url: "/prodcreate", method: :post do |form| %>
+            <button type="submit" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Добавить продукт
+            </button>
+          <% end %>
+    </div>
+
+</div>
+
+
+<div class="row">
+    <table class="table table-warning table-striped">
+    <thead>
+        <tr>
+        <th scope="col">id</th>
+        <th scope="col">Название продукта</th>
+        <th scope="col">Цена, руб</th>
+        <th scope="col">Скидна, %</th>
+        <th scope="col">Кол-во на складе</th>
+        <th scope="col">Ктегория</th>
+        <th scope="col">Тип</th>
+        <th scope="col">Серия</th>
+        <th scope="col">Действие</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <% for product in @products %>
+            <tr>
+                <th scope="row"><%= product.id %></th>
+                <td><%= product.name %></td>
+                <td><%= product.price %></td>
+                <td><%= product.discount_percent %></td>
+                <td><%= product.quantity %></td>
+                <td><%= Category.find_by(id: product.category_id).name %></td>
+                <td><%= Type.find_by(id: product.type_id).name %></td>
+                <td><%= Series.find_by(id: product.series_id).name %></td>
+
+
+
+                <td>
+                    <div class="container">
+                        <div class="row">
+                            <div class='col-auto'>
+                                <%= form_with url: "/edprod/#{product.id}", method: :post do |form| %>
+                                <button type="submit" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                Изменить
+                                </button>
+                                <% end %> 
+                            </div>
+                            <div class='col-auto'>
+                                <%= form_with url: "/delprod/#{product.id}" do |form| %>
+                                    <button type="submit" class="btn-close" aria-label="Закрыть"></button>
+                                <% end %>   
+                            </div>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+        <% end %>
+    </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content" id="m-body">
+
+      </div>
+  </div>
+</div>

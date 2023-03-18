@@ -1,0 +1,84 @@
+<div class="row p-2">
+    <div class='col-auto'>
+        <%= form_with class: "d-flex", url: "/clientcreate", method: :post do |form| %>
+            <button type="submit" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Добавить клиента
+            </button>
+          <% end %>
+    </div>
+
+</div>
+
+
+<div class="row">
+    <table class="table table-warning table-striped">
+    <thead>
+        <tr>
+        <th scope="col">id</th>
+        <th scope="col">Имя</th>
+        <th scope="col">Фамилия</th>
+        <th scope="col">Отчество</th>
+        <th scope="col">Дата рождения</th>
+        <th scope="col">Номер телефона</th>
+        <th scope="col">Серия паспорта</th>
+        <th scope="col">Номер паспорта</th>
+        <th scope="col">Действие</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <% for client in @client %>
+            <tr>
+                <th scope="row"><%= client.id %></th>
+                <td><%= client.first_name %></td>
+                <td><%= client.surname %></td>
+                <td><%= client.patronymic %></td>
+                <td><%= client.birth_date %></td>
+                <td><%= client.phone_number %></td>
+                <td><%= client.passport_series %></td>
+                <td><%= client.passport_number %></td>
+
+
+
+                <td>
+                    <div class="container">
+                        <div class="row">
+                            <div class='col-auto'>
+                                <%= form_with url: "/edclient/#{client.id}", method: :post do |form| %>
+                                <button type="submit" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                Изменить
+                                </button>
+                                <% end %> 
+                            </div>
+                            <div class='col-auto'>
+                                <%= form_with url: "/delclient/#{client.id}" do |form| %>
+                                    <button type="submit" class="btn-close" aria-label="Закрыть"></button>
+                                <% end %>  
+                            </div>
+                            <div class='col-auto'>
+                                   <% @card = Bonuscard.find_by(client_id: client.id) %>
+                                   <% if @card.nil? %>
+                                        <%= form_with url: "/linkcard/#{client.id}" do |form| %>
+                                            <button type="submit" class="btn btn-success">
+                                            Привязать бонусную карту
+                                            </button>
+                                        <% end %>  
+                                   <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+        <% end %>
+    </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content" id="m-body">
+
+      </div>
+  </div>
+</div>

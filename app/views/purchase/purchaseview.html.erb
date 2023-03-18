@@ -1,0 +1,46 @@
+<div class="row p-2">
+    <div class='col-auto'>
+        <%= form_with class: "d-flex", url: "/purchasecreate", method: :post do |form| %>
+            <button type="submit" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Новая покупка
+            </button>
+          <% end %>
+    </div>
+
+</div>
+
+
+<div class="row">
+    <table class="table table-warning table-striped">
+    <thead>
+        <tr>
+        <th scope="col">id</th>
+        <th scope="col">id продавца</th>
+        <th scope="col">id клиента</th>
+        <th scope="col">Сумма деньгами</th>
+        <th scope="col">Сумма баллами</th>
+        <th scope="col">Дата</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for purchase in @purchase%>
+            <tr>
+                <th scope="row"><%= purchase.id %></th>
+                <td><%= purchase.seller_id %></td>
+                <td><%= purchase.client_id %></td>
+                <td><%= purchase.cash_amount %></td>
+                <td><%= purchase.bonus_amount %></td>
+                <td><%= purchase.date %></td>
+            </tr>
+        <% end %>
+    </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content" id="m-body">
+
+      </div>
+  </div>
+</div>

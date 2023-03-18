@@ -1,0 +1,142 @@
+<% if client.nil? %>
+    <div class='container'>
+        <%= form_with url: "/addclient", method: :post do |form| %>
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :name_prod, "Имя клиента:" %></p>
+            </div>
+            <div class='col-auto'>
+                <p><%= form.text_field :first_name %></p>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :name_prod, "Фамилия клиента:" %></p>
+            </div>
+            <div class='col-auto'>
+                <p><%= form.text_field :surname %></p>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :name_prod, "Отчество (при наличии) клиента:" %></p>
+            </div>
+            <div class='col-auto'>
+                <p><%= form.text_field :patronymic %></p>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :name_prod, "Дата рождения клиента:" %></p>
+            </div>
+            <div class='col-auto'>
+                <p><%= date_field_tag 'birth_date' %></p>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :price_prod, "Номер телефона клиента:" %></p>
+            </div>
+            <div class='col-auto'>
+                <%= form.telephone_field :phone_number %>
+            </div>
+        </div>    
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :sale_prod, "Серия паспорта клиента:" %></p>
+            </div>
+            <div class='col-auto'>
+                <%= form.number_field :passport_series, in: 1000.0..9999.9, step: 1 %>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :sale_prod, "Номер паспорта клиента:" %></p>
+            </div>
+            <div class='col-auto'>
+                <%= form.number_field :passport_number, in: 100000.0..999999.0, step: 1 %>
+            </div>
+        </div>
+
+            <p><%= submit_tag("Добавить клиента", class: "btn btn-info", id: 'btn') %></p>
+        <% end %>
+    </div>
+<% else %>
+    <div class='container'>
+        <%= form_with url: "/confirmclient/#{client.id}", method: :post do |form| %>
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :name_prod, "Имя клиента:" %></p>
+            </div>
+            <div class='col-auto'>
+                <p><%= form.text_field :first_name, value: client.first_name %></p>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :name_prod, "Фамилия клиента:" %></p>
+            </div>
+            <div class='col-auto'>
+                <p><%= form.text_field :surname, value: client.surname  %></p>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :name_prod, "Отчество (при наличии) клиента:" %></p>
+            </div>
+            <div class='col-auto'>
+                <p><%= form.text_field :patronymic, value: client.patronymic %></p>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :name_prod, "Дата рождения клиента:" %></p>
+            </div>
+            <div class='col-auto'>
+                <p><%= date_field_tag 'birth_date', client.birth_date  %></p>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :price_prod, "Номер телефона клиента:" %></p>
+            </div>
+            <div class='col-auto'>
+                <%= form.telephone_field :phone_number, value: client.phone_number %>
+            </div>
+        </div>    
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :sale_prod, "Серия паспорта клиента:" %></p>
+            </div>
+            <div class='col-auto'>
+                <%= form.number_field :passport_series, in: 1000.0..9999.9, step: 1, value: client.passport_series %>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-auto'>
+                <p><%= form.label :sale_prod, "Номер паспорта клиента:" %></p>
+            </div>
+            <div class='col-auto'>
+                <%= form.number_field :passport_number, in: 100000.0..999999.0, step: 1, value: client.passport_number %>
+            </div>
+        </div>
+
+            <p><%= submit_tag("Сохранить информацию", class: "btn btn-info", id: 'btn') %></p>
+        <% end %>
+    </div>
+<% end %>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+</div>

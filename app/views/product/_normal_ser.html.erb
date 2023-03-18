@@ -1,0 +1,18 @@
+<div class='col-1'><%= series.id %></div>
+<div class='col-3'><%= series.name %></div>
+<div class='col-3'>
+    <div class="container">
+        <div class="row">
+            <div class='col-auto'>
+                <%= form_with url: "/edser/#{series.id}" do |form| %>
+                    <%= form.submit(type: :image, src: asset_path('edit.png'), height: "20", id: 'btn') %>
+                <% end %> 
+            </div>
+            <div class='col-auto'>
+                <%= form_with url: "/delser/#{series.id}" do |form| %>
+                    <button type="submit" class="btn-close" aria-label="Закрыть"></button>
+                <% end %>   
+            </div>
+        </div>
+    </div>
+</div>
